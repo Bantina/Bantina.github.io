@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://bantina.github.io">
+  <title>初级篇-浏览器的兼容性之js | Bantina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.window.onscroll 滚动条滚动时触发的事件
+获取滚动条对象的兼容问题：IE-documentElement,谷歌-body;(clientWidth等属性与此相同)document.documentElement或document.body–IE7之前的版本；123window.onscroll=function()&amp;#123;	var osTop=document.documen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初级篇-浏览器的兼容性之js">
+<meta property="og:url" content="https://bantina.github.io/2016/12/11/初级篇-浏览器的兼容性之js/index.html">
+<meta property="og:site_name" content="Bantina">
+<meta property="og:description" content="1.window.onscroll 滚动条滚动时触发的事件
+获取滚动条对象的兼容问题：IE-documentElement,谷歌-body;(clientWidth等属性与此相同)document.documentElement或document.body–IE7之前的版本；123window.onscroll=function()&amp;#123;	var osTop=document.documen">
+<meta property="og:updated_time" content="2016-12-20T06:47:31.704Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初级篇-浏览器的兼容性之js">
+<meta name="twitter:description" content="1.window.onscroll 滚动条滚动时触发的事件
+获取滚动条对象的兼容问题：IE-documentElement,谷歌-body;(clientWidth等属性与此相同)document.documentElement或document.body–IE7之前的版本；123window.onscroll=function()&amp;#123;	var osTop=document.documen">
+  
+    <link rel="alternative" href="/atom.xml" title="Bantina" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/img/header.jpg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Bantina</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">Bantina&#39;s Blog</p>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">首页</a></li>
+	        
+				<li><a href="/categories/frontend">前端路上</a></li>
+	        
+				<li><a href="/categories/share">【Mark】博文</a></li>
+	        
+				<li><a href="/categories/vision">【Mark】视野</a></li>
+	        
+				<li><a href="/categories/music">♪音乐♡心情♪</a></li>
+	        
+				<li><a href="/archives">归档</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="mail" target="_blank" href="mailto:827729574@qq.com" title="mail"><i class="icon-mail"></i></a>
+		        
+					<a class="github" target="_blank" href="https://github.com/Bantina" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bantina/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">Bantina</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/img/header.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Bantina</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">Bantina&#39;s Blog</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">首页</a></li>
+		        
+					<li><a href="/categories/frontend">前端路上</a></li>
+		        
+					<li><a href="/categories/share">【Mark】博文</a></li>
+		        
+					<li><a href="/categories/vision">【Mark】视野</a></li>
+		        
+					<li><a href="/categories/music">♪音乐♡心情♪</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+		        
+		        	<li><a href="/archives">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="mail" target="_blank" href="mailto:827729574@qq.com" title="mail"><i class="icon-mail"></i></a>
+			        
+						<a class="github" target="_blank" href="https://github.com/Bantina" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/bantina/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-初级篇-浏览器的兼容性之js" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初级篇-浏览器的兼容性之js
+    </h1>
+  
+
+        <a href="/2016/12/11/初级篇-浏览器的兼容性之js/" class="archive-article-date">
+  	<time datetime="2016-12-11T07:16:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-window-onscroll-滚动条滚动时触发的事件"><a href="#1-window-onscroll-滚动条滚动时触发的事件" class="headerlink" title="1.window.onscroll 滚动条滚动时触发的事件"></a>1.window.onscroll 滚动条滚动时触发的事件</h3><blockquote>
+<p>获取滚动条对象的兼容问题：IE-documentElement,谷歌-body;(clientWidth等属性与此相同)<br>document.documentElement或document.body–IE7之前的版本；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onscroll=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> osTop=<span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<a id="more"></a>
+<h3 id="2-addEvent-事件绑定"><a href="#2-addEvent-事件绑定" class="headerlink" title="2.addEvent 事件绑定"></a>2.addEvent 事件绑定</h3><blockquote>
+<p>为了兼容IE使用统一的绑定事件的方法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params">el,event,callbackFunction</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(el.addEventListener)&#123;</div><div class="line">		el.addEventListener(event,callbackFunction,<span class="literal">false</span>); <span class="comment">//元素作用域；</span></div><div class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>&#123;</div><div class="line">		el.attachEvent(<span class="string">'on'</span>+event,callbackFunction); <span class="comment">//全局作用域</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<!-- -->
+<h3 id="3-eventUtil-完整DOM事件-兼容写法"><a href="#3-eventUtil-完整DOM事件-兼容写法" class="headerlink" title="3.eventUtil 完整DOM事件 兼容写法"></a>3.eventUtil 完整DOM事件 兼容写法</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> eventUtil=&#123;</div><div class="line">	<span class="comment">//添加句柄</span></div><div class="line">	addHandler:<span class="function"><span class="keyword">function</span>(<span class="params">element,type,handler</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(element.addEventListener)&#123;</div><div class="line">			element.addEventListener(type,handler,<span class="literal">false</span>);</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.attachEvent)&#123;</div><div class="line">			element.attachEvent(<span class="string">'on'</span>+type,handler);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			element[<span class="string">'on'</span>+type]=handler;</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//删除句柄</span></div><div class="line">	removeHandler:<span class="function"><span class="keyword">function</span>(<span class="params">element,type,handler</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(element.removeEventListener)&#123;</div><div class="line">			element.removeEventListener(type,handler,<span class="literal">false</span>);</div><div class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(element.detachEvent)&#123;</div><div class="line">			element.detachEvent(<span class="string">'on'</span>+type,handler);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			element[<span class="string">'on'</span>+type]=<span class="literal">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//获取事件对象；</span></div><div class="line">	getEvent:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> event?event:<span class="built_in">window</span>.event;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//获取事件类型；</span></div><div class="line">	getType:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> event.type;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//获取事件来源元素；</span></div><div class="line">	getElement:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> event.target||event.srcElement;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//阻止事件默认行为；</span></div><div class="line">	preventDefault:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(event.preventDefault)&#123;</div><div class="line">			event.preventDefault();</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			event.returnValue=<span class="literal">false</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line">	<span class="comment">//阻止事件冒泡；</span></div><div class="line">	stopPropagation:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(event.stopPropagation)&#123;</div><div class="line">			event.stopPropagation();</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			event.cancelBubble=<span class="literal">true</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<!-- -->
+<h3 id="4-getElement-获取事件目标"><a href="#4-getElement-获取事件目标" class="headerlink" title="4.getElement 获取事件目标"></a>4.getElement 获取事件目标</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElement</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> event.target||event.srcElement; <span class="comment">//兼容IE 获取事件目标；</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<!-- -->
+<h3 id="5-获取元素通过类名"><a href="#5-获取元素通过类名" class="headerlink" title="5.获取元素通过类名"></a>5.获取元素通过类名</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">* @param &#123;classname&#125; claName</div><div class="line">* @param &#123;父元素的id，可选&#125; parent</div><div class="line">**/</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getByClass</span>(<span class="params">clsName,parent</span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> oParent=parent?<span class="built_in">document</span>.getElementById(parent):<span class="built_in">document</span>;</div><div class="line">        <span class="keyword">var</span> eles=[];</div><div class="line">        <span class="keyword">var</span> elements=oParent.getElementsByTagName(<span class="string">'*'</span>);</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.length; i++) &#123;</div><div class="line">            <span class="keyword">if</span>(elements[i].className==clsName)&#123;</div><div class="line">                eles.push(elements[i]);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">return</span> eles;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<!-- -->
+<h3 id="6-透明度—js控制透明度；"><a href="#6-透明度—js控制透明度；" class="headerlink" title="6.透明度—js控制透明度；"></a>6.透明度—js控制透明度；</h3><blockquote>
+<p>IE中CSS透明度通过filter:alpha(opacity:*)设置；<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setAttr</span>(<span class="params">el,attr,val</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(attr==<span class="string">'opacity'</span>)&#123;</div><div class="line">		el.style.filter=<span class="string">'alpha(opacity:'</span>+val+<span class="string">')'</span>;<span class="comment">//针对IE浏览器的透明度写法</span></div><div class="line">		el.style.opacity=val/<span class="number">100</span>;<span class="comment">//针对谷歌、火狐浏览器的透明度写法,小数表示；</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注：IE与其他浏览器设置透明度时 值 需换算；</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wxpay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js初级篇/">js初级篇</a></li></ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+	<i class="icon-book icon"></i>
+	<a class="article-category-link" href="/categories/frontend/">frontend</a>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://bantina.github.io/2016/12/11/初级篇-浏览器的兼容性之js/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/11/vison1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vison1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/09/test/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">test</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="初级篇-浏览器的兼容性之js" data-title="初级篇-浏览器的兼容性之js" data-url="https://bantina.github.io/2016/12/11/初级篇-浏览器的兼容性之js/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"bantina"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 Bantina
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0.js"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">音乐</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">心理学</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js初级篇</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">css</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.ruanyifeng.com/blog/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阮一峰的网络日志</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://es6.ruanyifeng.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ECMAScript 6 入门</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.neu-reality.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>神经现实</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.dong666.com/TBlogs/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>七小的博客</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
