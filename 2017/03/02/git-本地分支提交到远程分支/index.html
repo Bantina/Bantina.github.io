@@ -8,28 +8,12 @@
   <link rel="dns-prefetch" href="https://bantina.github.io">
   <title>git 本地分支提交到远程分支 | Bantina</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本地分支和远程master做对比—–确认修改文件是否正确；必要时使用 git diff 查看修改详情；
-
-切换到master分支 pull最新项目；     
-
-与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)     
-
-切换到 本地分支 merge到master;注：–squash 参数去除本地commit提交记录；     
-
-查看状态 (出现pull下来的本">
+  <meta name="description" content="最全步骤列举：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git 本地分支提交到远程分支">
 <meta property="og:url" content="https://bantina.github.io/2017/03/02/git-本地分支提交到远程分支/index.html">
 <meta property="og:site_name" content="Bantina">
-<meta property="og:description" content="本地分支和远程master做对比—–确认修改文件是否正确；必要时使用 git diff 查看修改详情；
-
-切换到master分支 pull最新项目；     
-
-与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)     
-
-切换到 本地分支 merge到master;注：–squash 参数去除本地commit提交记录；     
-
-查看状态 (出现pull下来的本">
+<meta property="og:description" content="最全步骤列举：">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git01.png?raw=true">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git02.png?raw=true">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git03.png?raw=true">
@@ -44,18 +28,10 @@
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git12.png?raw=true">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git13.png?raw=true">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git14.png?raw=true">
-<meta property="og:updated_time" content="2017-10-11T13:21:02.000Z">
+<meta property="og:updated_time" content="2017-10-11T13:59:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git 本地分支提交到远程分支">
-<meta name="twitter:description" content="本地分支和远程master做对比—–确认修改文件是否正确；必要时使用 git diff 查看修改详情；
-
-切换到master分支 pull最新项目；     
-
-与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)     
-
-切换到 本地分支 merge到master;注：–squash 参数去除本地commit提交记录；     
-
-查看状态 (出现pull下来的本">
+<meta name="twitter:description" content="最全步骤列举：">
 <meta name="twitter:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git01.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Bantina" type="application/atom+xml">
@@ -210,30 +186,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li><p>本地分支和远程master做对比—–确认修改文件是否正确；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git01.png?raw=true" alt="git"><br>必要时使用 git diff 查看修改详情；</p>
-</li>
-<li><p>切换到master分支 pull最新项目；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git02.png?raw=true" alt="git">     </p>
-</li>
-<li><p>与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git03.png?raw=true" alt="git">     </p>
-</li>
-<li><p>切换到 本地分支 merge到master;<br>注：–squash 参数去除本地commit提交记录；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git04.png?raw=true" alt="git">     </p>
-</li>
-<li><p>查看状态 (出现pull下来的本地未修改的文件和本地已修改的文件) 提交<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git05.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git06.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git07.png?raw=true" alt="git">     </p>
-</li>
-<li><p>查看状态 并 与master做对比 (只有本地自己修改的文件)；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git08.png?raw=true" alt="git">     </p>
-</li>
-<li><p>切换到master 分支 ，merge本地分支；—–带参数–squash<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git09.png?raw=true" alt="git">     </p>
-</li>
-<li><p>做最后一次提交+说明；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git10.png?raw=true" alt="git">     </p>
-</li>
-<li><p>在master分支上直接 push，，但有可能会出现错误，如下：<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git11.png?raw=true" alt="git"><br>原因分析：在你pull了一次远程代码，还未push到远程的期间，有人先你一步，又push了代码；</p>
-</li>
-<li><p>解决：先pull到最新，状态无异常(可能会出现冲突)，再重新push；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git12.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git13.png?raw=true" alt="git">     </p>
-</li>
-<li><p>完成—-查看log<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git14.png?raw=true" alt="git">     </p>
-</li>
-</ol>
+        <p>最全步骤列举：</p>
+<a id="more"></a>
+<h5 id="1-本地分支和远程master做对比—–确认修改文件是否正确；"><a href="#1-本地分支和远程master做对比—–确认修改文件是否正确；" class="headerlink" title="1.本地分支和远程master做对比—–确认修改文件是否正确；"></a>1.本地分支和远程master做对比—–确认修改文件是否正确；</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git01.png?raw=true" alt="git"><br>必要时使用 git diff 查看修改详情；</p>
+<h5 id="2-切换到master分支-pull最新项目；"><a href="#2-切换到master分支-pull最新项目；" class="headerlink" title="2.切换到master分支 pull最新项目；"></a>2.切换到master分支 pull最新项目；</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git02.png?raw=true" alt="git">     </p>
+<h5 id="3-与本地分支再次做对比；-新增了刚pull下来的远程别人修改已push后的文件"><a href="#3-与本地分支再次做对比；-新增了刚pull下来的远程别人修改已push后的文件" class="headerlink" title="3.与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)"></a>3.与本地分支再次做对比；(新增了刚pull下来的远程别人修改已push后的文件)</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git03.png?raw=true" alt="git">     </p>
+<h5 id="4-切换到-本地分支-merge到master"><a href="#4-切换到-本地分支-merge到master" class="headerlink" title="4.切换到 本地分支 merge到master;"></a>4.切换到 本地分支 merge到master;</h5><p>注：–squash 参数去除本地commit提交记录；<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git04.png?raw=true" alt="git">     </p>
+<h5 id="5-查看状态-出现pull下来的本地未修改的文件和本地已修改的文件-提交"><a href="#5-查看状态-出现pull下来的本地未修改的文件和本地已修改的文件-提交" class="headerlink" title="5.查看状态 (出现pull下来的本地未修改的文件和本地已修改的文件) 提交"></a>5.查看状态 (出现pull下来的本地未修改的文件和本地已修改的文件) 提交</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git05.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git06.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git07.png?raw=true" alt="git">     </p>
+<h5 id="6-查看状态-并-与master做对比-只有本地自己修改的文件-；"><a href="#6-查看状态-并-与master做对比-只有本地自己修改的文件-；" class="headerlink" title="6.查看状态 并 与master做对比 (只有本地自己修改的文件)；"></a>6.查看状态 并 与master做对比 (只有本地自己修改的文件)；</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git08.png?raw=true" alt="git">     </p>
+<h5 id="7-切换到master-分支-，merge本地分支；—–带参数–squash"><a href="#7-切换到master-分支-，merge本地分支；—–带参数–squash" class="headerlink" title="7.切换到master 分支 ，merge本地分支；—–带参数–squash"></a>7.切换到master 分支 ，merge本地分支；—–带参数–squash</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git09.png?raw=true" alt="git">     </p>
+<h5 id="8-做最后一次提交-说明；"><a href="#8-做最后一次提交-说明；" class="headerlink" title="8.做最后一次提交+说明；"></a>8.做最后一次提交+说明；</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git10.png?raw=true" alt="git">     </p>
+<h5 id="9-在master分支上直接-push，，但有可能会出现错误，如下："><a href="#9-在master分支上直接-push，，但有可能会出现错误，如下：" class="headerlink" title="9.在master分支上直接 push，，但有可能会出现错误，如下："></a>9.在master分支上直接 push，，但有可能会出现错误，如下：</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git11.png?raw=true" alt="git"><br>原因分析：在你pull了一次远程代码，还未push到远程的期间，有人先你一步，又push了代码；</p>
+<h5 id="10-解决：先pull到最新，状态无异常-可能会出现冲突-，再重新push；"><a href="#10-解决：先pull到最新，状态无异常-可能会出现冲突-，再重新push；" class="headerlink" title="10.解决：先pull到最新，状态无异常(可能会出现冲突)，再重新push；"></a>10.解决：先pull到最新，状态无异常(可能会出现冲突)，再重新push；</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git12.png?raw=true" alt="git"><br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git13.png?raw=true" alt="git">     </p>
+<h5 id="11-完成—-查看log"><a href="#11-完成—-查看log" class="headerlink" title="11.完成—-查看log"></a>11.完成—-查看log</h5><p><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/git/git14.png?raw=true" alt="git">     </p>
 
       
 
@@ -455,11 +420,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">心理学</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
+                <a href="javascript:void(0)">心理学</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,23 +8,17 @@
   <link rel="dns-prefetch" href="https://bantina.github.io">
   <title>启动本地服务 | Bantina</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。
-
-Node启动一个最基本的本地服务：12345678910111213141516171819202122232425262728293031var http = require(&amp;apos;http&amp;apos;);var fs = require(&amp;apos;fs&amp;apos;);var se">
+  <meta name="description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="启动本地服务">
 <meta property="og:url" content="https://bantina.github.io/2017/10/11/启动本地服务/index.html">
 <meta property="og:site_name" content="Bantina">
-<meta property="og:description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。
-
-Node启动一个最基本的本地服务：12345678910111213141516171819202122232425262728293031var http = require(&amp;apos;http&amp;apos;);var fs = require(&amp;apos;fs&amp;apos;);var se">
+<meta property="og:description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。">
 <meta property="og:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/post/serve01.png?raw=true">
-<meta property="og:updated_time" content="2017-10-11T13:50:36.000Z">
+<meta property="og:updated_time" content="2017-10-11T13:59:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="启动本地服务">
-<meta name="twitter:description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。
-
-Node启动一个最基本的本地服务：12345678910111213141516171819202122232425262728293031var http = require(&amp;apos;http&amp;apos;);var fs = require(&amp;apos;fs&amp;apos;);var se">
+<meta name="twitter:description" content="在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。">
 <meta name="twitter:image" content="https://github.com/Bantina/Bantina.github.io/blob/master/img/post/serve01.png?raw=true">
   
     <link rel="alternative" href="/atom.xml" title="Bantina" type="application/atom+xml">
@@ -180,16 +174,11 @@ Node启动一个最基本的本地服务：1234567891011121314151617181920212223
     <div class="article-entry" itemprop="articleBody">
       
         <p>在开发过程中，往往会遇到不同设备(如：手机、他人电脑)预览或测试的情况，这就需要启动一个本地服务来支持。</p>
-<ol>
-<li>Node启动一个最基本的本地服务：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">var server= http.createServer(function(req,res)&#123;</div><div class="line"></div><div class="line">    var url = req.url; </div><div class="line">    var file = __dirname + url;</div><div class="line">    console.log(url);</div><div class="line"></div><div class="line">    fs.readFile( file , function(err,data)&#123;</div><div class="line">    	</div><div class="line">        if(err)&#123;</div><div class="line">            res.writeHeader(404,&#123;</div><div class="line">                &apos;content-type&apos; : &apos;text/html;charset=&quot;utf-8&quot;&apos;</div><div class="line">            &#125;);</div><div class="line">            res.write(&apos;&lt;h1&gt;404错误&lt;/h1&gt;&lt;p&gt;你要找的页面不存在&lt;/p&gt;&apos;);</div><div class="line">            res.end();</div><div class="line">        &#125;else&#123;</div><div class="line">            res.writeHeader(200,&#123;</div><div class="line">                &apos;content-type&apos; : &apos;text/html;charset=&quot;utf-8&quot;&apos;</div><div class="line">            &#125;);</div><div class="line">            res.write(data);</div><div class="line">            res.end();</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;).listen(4006);</div><div class="line"></div><div class="line">console.log(&apos;服务器开启成功&apos;);</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<a id="more"></a>
+<h4 id="1-Node启动一个最基本的本地服务："><a href="#1-Node启动一个最基本的本地服务：" class="headerlink" title="1.Node启动一个最基本的本地服务："></a>1.Node启动一个最基本的本地服务：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">var server= http.createServer(function(req,res)&#123;</div><div class="line"></div><div class="line">    var url = req.url; </div><div class="line">    var file = __dirname + url;</div><div class="line">    console.log(url);</div><div class="line"></div><div class="line">    fs.readFile( file , function(err,data)&#123;</div><div class="line">    	</div><div class="line">        if(err)&#123;</div><div class="line">            res.writeHeader(404,&#123;</div><div class="line">                &apos;content-type&apos; : &apos;text/html;charset=&quot;utf-8&quot;&apos;</div><div class="line">            &#125;);</div><div class="line">            res.write(&apos;&lt;h1&gt;404错误&lt;/h1&gt;&lt;p&gt;你要找的页面不存在&lt;/p&gt;&apos;);</div><div class="line">            res.end();</div><div class="line">        &#125;else&#123;</div><div class="line">            res.writeHeader(200,&#123;</div><div class="line">                &apos;content-type&apos; : &apos;text/html;charset=&quot;utf-8&quot;&apos;</div><div class="line">            &#125;);</div><div class="line">            res.write(data);</div><div class="line">            res.end();</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;).listen(4006);</div><div class="line"></div><div class="line">console.log(&apos;服务器开启成功&apos;);</div></pre></td></tr></table></figure>
 <p>支持不同设备浏览时，你可能还需要以下操作：<br>1.）连接同一局域网；<br>2.）终端查看本地机ip地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//Mac</div><div class="line">ifconfig</div><div class="line"></div><div class="line">//windows</div><div class="line">ipconfig</div></pre></td></tr></table></figure></p>
 <p>3.）访问地址：<a href="https://本地ip:4006/" target="_blank" rel="external">https://本地ip:4006/</a>   </p>
-<ol>
-<li>安装anywhere模块 来启动 (前提:本地已安装Node和npm)<br>1.）安装anywhere模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo  npm i -g  anywhere</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<h4 id="2-安装anywhere模块-来启动-前提-本地已安装Node和npm"><a href="#2-安装anywhere模块-来启动-前提-本地已安装Node和npm" class="headerlink" title="2.安装anywhere模块 来启动 (前提:本地已安装Node和npm)"></a>2.安装anywhere模块 来启动 (前提:本地已安装Node和npm)</h4><p>1.）安装anywhere模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo  npm i -g  anywhere</div></pre></td></tr></table></figure></p>
 <p>2.) 启动服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">anywhere 10080</div></pre></td></tr></table></figure></p>
 <p>3.) 访问地址，如图：<br><img src="https://github.com/Bantina/Bantina.github.io/blob/master/img/post/serve01.png?raw=true" alt="git">     </p>
 
@@ -404,11 +393,11 @@ Node启动一个最基本的本地服务：1234567891011121314151617181920212223
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">心理学</a>
+                <a href="javascript:void(0)">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">git</a>
+                <a href="javascript:void(0)">心理学</a>
               </li>
              
               <li class="article-tag-list-item">
