@@ -173,6 +173,58 @@
     <div class="article-entry" itemprop="articleBody">
       
         <a id="more"></a>
+<ul>
+<li>js数字类型的实现基于 IEEE 754(浮点数)，使用“双精度”格式(即64位二进制)；</li>
+<li>特别大／小的数字 默认以指数格式显示, 相当于toExponential()转化成指数的结果；</li>
+<li>js的“机器精度”值，定义在 Number.EPSILON = 2^-52 = Math.pow(2, -52)，即 2.220446049250313e-16；</li>
+<li>js中最大浮点数定义在 Number.MAX_VALUE = 1.798e + 308 (约等于)；</li>
+<li>js中最小浮点数定义在 Number.MIN_VALUE = 5e - 324 (约等于，不是负数，无限接近于0的数)；</li>
+<li>js中能够被安全呈现的最大整数定义在 Number.MAX_SAFE_INTEGER = 2^53 - 1 = Math.pow(2, 53) - 1，即 9007199254740991；</li>
+<li>js中能够被安全呈现的最大整数定义在 Number.MIN_SAFE_INTEGER = -9007199254740991；</li>
+</ul>
+<p>关于最大安全数字举例：<br>问题：js处理一些比较大的数字时出现的偏差，如数据库中的64位ID等。<br>原因：JS的数字类型无法精确呈现64位数。<br>解决方案：将其转换为字符串。</p>
+<h5 id="0-1-0-2-0-3-？"><a href="#0-1-0-2-0-3-？" class="headerlink" title="0.1 + 0.2 == 0.3 ？"></a>0.1 + 0.2 == 0.3 ？</h5><ul>
+<li>怎样来判断该语句返回为true呢？<br>方法：设置一个误差范围值，通常称为“机器精度”(machine epsilon)，对于js的数字来说，这个值通常是2^-52(2.220446049250313e-16)<br>对于ES6,该值定义在Number.EPSILON中，ES5兼容写法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (!Number.EPSILON) &#123;</div><div class="line">    Number.EPSILON = Math.pow(2, -52);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>判断两个数字是否相等时，在指定的误差内，可以用Number.EPSILON，来比较<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function numbersCloseToEqual(n1, n2) &#123;</div><div class="line">    return Math.abs(n1 - n2) &lt; Number.EPSILON;</div><div class="line">&#125;</div><div class="line">var a = 0.1 + 0.2;</div><div class="line">var b = 0.3;</div><div class="line">numbersCloseToEqual(a,b);	// true</div></pre></td></tr></table></figure></p>
+<ul>
+<li>检测一个值是否为整数？</li>
+</ul>
+<ol>
+<li>正则；</li>
+<li><p>ES6: Number.isInteger();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Number.isInteger(42); // true;</div><div class="line">Number.isInteger(42.00); // true;</div><div class="line">Number.isInteger(42.35); // false;</div></pre></td></tr></table></figure>
+</li>
+<li><p>ES6之前版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isInteger) &#123;</div><div class="line">    Number.isInteger = function(num) &#123;</div><div class="line">        return type num == &quot;number&quot; &amp;&amp; num % 1 == 0;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>检测一个值是否为安全范围内的整数？</li>
+</ul>
+<ol>
+<li><p>ES6: Number.isSafeInteger()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Number.isSafeInteger(Number.MAX_SAFE_INTEGER); // true;</div><div class="line">Number.isSafeInteger(2^53 - 1); // true;</div><div class="line">Number.isSafeInteger(2^53); // false;</div></pre></td></tr></table></figure>
+</li>
+<li><p>ES6之前版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isSafeInteger) &#123;</div><div class="line">    Number.isSafeInteger = function(num) &#123;</div><div class="line">        return Number.isInteger(num) &amp;&amp; Math.abs(num) &lt;= Number.MAX_SAFE_INTEGER;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>检测一个值是否为NaN?</li>
+</ul>
+<ol>
+<li><p>window.isNaN()  // 存在缺陷，只检测值 not a number;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;  // NaN</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">window.isNaN( a ); // true;</div><div class="line">window.isNaN( b ); // true;</div></pre></td></tr></table></figure>
+</li>
+<li><p>ES6 : Number.isNaN()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">    Number.isNaN = function() &#123;</div><div class="line">        return (</div><div class="line">            typeof n === &quot;number&quot; &amp;&amp; window.isNaN(n)</div><div class="line">        );</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var a = 2 / &quot;foo&quot;;  // NaN</div><div class="line">var b = &quot;foo&quot;;</div><div class="line">window.isNaN( a ); // true;</div><div class="line">window.isNaN( b ); // false;</div></pre></td></tr></table></figure>
+</li>
+<li><p>NaN 是js 中唯一一个不等于自身的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isNaN) &#123;</div><div class="line">    Number.isNaN = function(n) &#123;</div><div class="line">        return n !== n</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
 
       
 
@@ -426,7 +478,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <ol>
+<li>“机器精度”(machine epsilon)值，2^-52(2.220446049250313e-16)。<br>ES6,该值定义在Number.EPSILON中，<br>ES5兼容写法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (!Number.EPSILON) &#123;</div><div class="line">    Number.EPSILON = Math.pow(2, -52);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
+
       
 
       
